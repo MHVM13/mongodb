@@ -13,6 +13,7 @@ function generateUsersData(size) {
             "second_name": 'Mikheev', //TODO
             "phone": `+7${random(9000000000, 9999999999)}`,
             "gender": (Math.random() < 0.5) ? 'Male' : 'Female',
+            "age": random(16, 70),
             "address": {
                 "town": 'Moscow', //TODO
                 "street": 'Pushkina', //TODO
@@ -26,6 +27,7 @@ function generateUsersData(size) {
     return usersList
 }
 
+// TODO обработать ошибки если такие будут
 async function main() {
     const URI = 'mongodb://127.0.0.1:27017'
     const SIZE = 5
@@ -37,7 +39,7 @@ async function main() {
 
     await myColl.drop().then(() => console.log('Dropped data')) // Очистка БД каждый раз перед добавлением
 
-    const users = generateUsersData(100)
+    const users = generateUsersData(10000)
     await myColl.insertMany(users)
 
 
