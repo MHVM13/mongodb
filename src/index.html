@@ -3,22 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-<!--    <link rel="stylesheet" href="styles/style.css" type="text/css">-->
+    <link rel="stylesheet" href="./style.css">
+    <script defer src="./scripts/controller.js"></script>
 </head>
 <body>
-<select name="collection" id="collection">
-    <option value="">Choose a collection</option>
-    <option value="Users">Users</option>
-    <option value="Orders">Orders</option>
-    <option value="Products">Products</option>
-    <option value="Reviews">Reviews</option>
-</select>
+    <div class="wrapper">
+        <select class="select-collection" id="select-collection">
+            <option value="">Choose a collection</option>
+            <option value="users">Users</option>
+            <option value="products">Products</option>
+            <option value="reviews">Reviews</option>
+            <option value="orders">Orders</option>
+        </select>
 
-<div class="doc">
-    <pre class="doc__json"></pre>
-    <button class="btn btn--save">Сохранить</button>
-    <button class="btn btn--remove">Удалить</button>
-</div>
-
+        <div class="documents-container">
+<!--            <div class="document">-->
+<!--                <code class="document__json">-->
+<!--                    {"name": 123,}-->
+<!--                </code>-->
+<!--                <button class="document__save">Save</button>-->
+<!--                <button class="document__delete">Delete</button>-->
+<!--            </div>-->
+        </div>
+    </div>
 </body>
 </html>

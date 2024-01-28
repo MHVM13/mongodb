@@ -14,6 +14,13 @@ module.exports = (env) => {
             clean: true,
         },
 
+        plugins: [
+            new HtmlWebpackPlugin({template: path.resolve(__dirname, 'src', 'index.html')}),
+            new MiniCssExtractPlugin({
+                filename: 'style.[contenthash].css',
+            })
+        ],
+
         module: {
             rules: [
                 {
@@ -22,13 +29,6 @@ module.exports = (env) => {
                 },
             ],
         },
-
-        plugins: [
-            new HtmlWebpackPlugin({template: path.resolve(__dirname, 'src', 'index.html')}),
-            new MiniCssExtractPlugin({
-                filename: 'style.[contenthash].css',
-            })
-        ],
 
         devtool: 'inline-source-map',
         devServer: {
