@@ -4,8 +4,8 @@
   "description": "",
   "main": "main.js",
   "scripts": {
+    "start": "webpack server",
     "start:server": "nodemon server/server.js",
-    "start:client": "webpack server",
     "build:dev": "webpack --env mode=development",
     "build:prod": "webpack --env mode=production"
   },

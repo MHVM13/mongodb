@@ -12,7 +12,11 @@ router
     .route('/:id')
     .get(usersController.getUser)
     .patch(usersController.updateUser)
-    .delete(usersController.deleteUser)
+    .delete(usersController.deleteUser);
+
+router
+    .route('/transaction')
+    .get(usersController.transaction);
 
 module.exports = router;
 
