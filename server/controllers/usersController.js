@@ -58,11 +58,11 @@ exports.getUser = async (req, res) => {
 // В req.body содержится json что будет заменено
 exports.updateUser = async (req, res) => {
     try {
-        const user = await User.findByIdAndUpdate(req.params.id, req.body, {
-            new: true,
-            runValidators: true,
-        });
+        console.log(req.body);
+        const user = await User.findByIdAndUpdate(req.params.id, req.body);
+        console.log(user);
 
+        console.log(req.params.id);
         res.status(200).json({
             status: 'success',
             data: {

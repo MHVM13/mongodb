@@ -10,7 +10,9 @@ const productsRouter = require('./routers/productsRouter');
 
 const app = express();
 
-app.use(express.json());
+app.use(express.json({
+    type: ['application/json', 'text/plain']
+}));
 app.use(morgan('dev'));
 app.use(cors());
 

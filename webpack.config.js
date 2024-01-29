@@ -5,7 +5,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 module.exports = (env) => {
     return {
         mode: env.mode ?? 'development', // Может быть production, development (отличаются скоростью сборки и оптимизацией)
-        entry: path.resolve(__dirname, 'src', 'scripts', 'controller.js'), // Путь к entry point файлу
+        entry: path.resolve(__dirname, 'src', 'scripts', 'main.js'), // Путь к entry point файлу
         cache: true,
 
         // Куда и как будет выводиться bundle JS файл
