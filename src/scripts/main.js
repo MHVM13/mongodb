@@ -3,10 +3,12 @@ import '../styles/style.css';
 const selectCollection = document.querySelector('.select-collection');
 const btnCreateNew = document.querySelector('.btn--create-new');
 const documentContainer = document.querySelector('.documents-container');
+const menu = document.querySelector('.menu');
 
+let value = '';
 
 selectCollection.addEventListener('change', async function () {
-    const value = selectCollection.value;
+    value = selectCollection.value;
     selectCollection[0].disabled = true;
     btnCreateNew.disabled = false;
     const data = await loadDocuments(value);
@@ -43,8 +45,36 @@ const renderDocument = function (doc) {
     documentContainer.insertAdjacentHTML('afterbegin', markup);
 }
 
+const createFormForNewDocument = function () {
+    const markup = `
+        <div class="document document-new">
+            <pre contenteditable="true" class="document__json"></pre>
+            <button class="document__save">Save</button>
+            <button class="document__delete">Delete</button>
+        </div>
+    `;
+
+    menu.insertAdjacentHTML('afterend', markup);
+
+    const newDoc = document.querySelector('.document-new');
+    newDoc.querySelectorAll('button').forEach(item => item.addEventListener('click', async function (e) {
+        if (e.target.classList.contains('document__save')) {
+            const json = JSON.parse(e.target.closest('.document').querySelector('.document__json').innerText);
+            await fetch(`http://127.0.0.1:8181/api/v1/${value}`, {
+                method: 'POST',
+                body: JSON.stringify(json),
+            })
+            newDoc.remove();
+            renderDocument(json);
+        }
+        if (e.target.classList.contains('document__delete')) {
+            newDoc.remove();
+        }
+    }))
+}
+
 btnCreateNew.addEventListener('click', function () {
-    console.log(123);
+    createFormForNewDocument();
 });
 
 const loadDocuments = async function (collection) {
