@@ -1,7 +1,6 @@
 // Добавление в коллекцию пользователей
 db.users.insertMany([
     {
-        _id: '1',
         full_name: 'Андреева Есения Данииловна',
         phone_number: '79157300178',
         email: 'sid_emusufe67@outlook.com',
@@ -13,7 +12,6 @@ db.users.insertMany([
         ]
     },
     {
-        _id: '2',
         full_name: 'Князев Владимир Романович',
         phone_number: '79159106603',
         email: 'wevug_ituxa86@aol.com',
@@ -28,7 +26,6 @@ db.users.insertMany([
 
     },
     {
-        _id: '3',
         full_name: 'Романова Аделина Серафимовна',
         phone_number: '79155781118',
         email: 'zab_ofipexa75@hotmail.com',
@@ -41,7 +38,6 @@ db.users.insertMany([
         ]
     },
     {
-        _id: '4',
         full_name: 'Вишневский Роман Кириллович',
         phone_number: '79152969903',
         email: 'xafo-zixamo12@hotmail.co',
@@ -53,7 +49,6 @@ db.users.insertMany([
         ]
     },
     {
-        _id: '5',
         full_name: 'Никитин Владислав Артёмович',
         phone_number: '79154105465',
         email: 'secip_icahu77@mail.com',
@@ -67,7 +62,6 @@ db.users.insertMany([
         ]
     },
     {
-        _id: '6',
         full_name: 'Осипов Кирилл Артёмович',
         phone_number: '79155707025',
         email: 'zoget-irafo48@gmail.com',

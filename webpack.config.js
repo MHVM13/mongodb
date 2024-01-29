@@ -1,6 +1,5 @@
 const path = require('path'); // Чтобы пути были корректными на всех ОС
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-// const webpack = require('webpack'); // Для доступа к встроенным плагинам webpack
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = (env) => {
