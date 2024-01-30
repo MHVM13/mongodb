@@ -80,9 +80,11 @@ btnCreateNew.addEventListener('click', function () {
 });
 
 btnTransaction.addEventListener('click', async function (e) {
-    await fetch(`http://127.0.0.1:8181/api/v1/transaction`, {
+    const res = await fetch(`http://127.0.0.1:8181/api/v1/transaction`, {
         method: 'POST',
     })
+    const data = await res.json();
+    alert(JSON.stringify(data));
 })
 
 const loadDocuments = async function (collection) {
