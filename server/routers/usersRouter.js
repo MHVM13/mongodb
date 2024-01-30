@@ -14,9 +14,5 @@ router
     .patch(usersController.updateUser)
     .delete(usersController.deleteUser);
 
-router
-    .route('/transaction')
-    .get(usersController.transaction);
-
 module.exports = router;
 

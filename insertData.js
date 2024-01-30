@@ -85,53 +85,17 @@ db.orders.insertMany([
 
 // Добавление в коллекцию продуктов
 db.products.insertMany([
-    {_id: 'p1', product_name: 'Телефон', description: 'Описание телефона', rating: 4.7, price: 15000, amount: 150, reviews: [
-        {user_id: '1', date: '13.06.2023', rating: 5.0, text: 'Все хорошо'},
-        {user_id: '5', date: '12.09.2023', rating: 4.0, text: 'Не все идеально, но пойдет'},
-    ]},
-    {_id: 'p2', product_name: 'SSD', description: 'Описание SDD', rating: 4.9, price: 8000, amount: 50, reviews: [
-        {user_id: '3', date: '10.08.2023', rating: 4.9, text: 'Отлично'},
-    ]},
-    {_id: 'p3', product_name: 'Колонка', description: 'Описание колонки', rating: 2.0, price: 1000, amount: 500, reviews: [
-        {user_id: '6', date: '30.11.2023', rating: 2.0, text: 'Разочарован'},
-    ]},
-    {_id: 'p4', product_name: 'Футболка', description: 'Описание футболки', rating: 0.0, price: 1500, amount: 100, reviews: []},
-    {_id: 'p5', product_name: 'Кружка', description: 'Описание кружки', rating: 5.0, price: 300, amount: 1000, reviews: [
-        {user_id: '3', date: '10.08.2023', rating: 5.0, text: 'Отличные материалы'},
-    ]}
+    {_id: 'p1', product_name: 'Телефон', description: 'Описание телефона', rating: 4.7, price: 15000, amount: 150},
+    {_id: 'p2', product_name: 'SSD', description: 'Описание SDD', rating: 4.9, price: 8000, amount: 50},
+    {_id: 'p3', product_name: 'Колонка', description: 'Описание колонки', rating: 2.0, price: 1000, amount: 500},
+    {_id: 'p4', product_name: 'Футболка', description: 'Описание футболки', rating: 0.0, price: 1500, amount: 100},
+    {_id: 'p5', product_name: 'Кружка', description: 'Описание кружки', rating: 5.0, price: 300, amount: 1000}
 ])
 
-rs.initiate({
-    _id: "rs-config-server",
-    configsvr: true,
-    version: 1,
-    members: [
-        { _id: 0, host: 'configsvr01:27017' },
-        { _id: 1, host: 'configsvr02:27017' },
-        { _id: 2, host: 'configsvr03:27017' }
-    ]
-})
-
-rs.initiate({
-    _id: "rs-shard-XX",
-    version: 1,
-    members: [
-        { _id: 0, host: "shardXX-replica01:27017" },
-        { _id: 1, host: "shardXX-replica02:27017" },
-        { _id: 2, host: "shardXX-replica03:27017" }
-    ]
-})
-
-sh.addShard("rs-shard-01/shard01-replica01:27017")
-sh.addShard("rs-shard-01/shard01-replica02:27017")
-sh.addShard("rs-shard-01/shard01-replica03:27017")
-sh.addShard("rs-shard-02/shard02-replica01:27017")
-sh.addShard("rs-shard-02/shard02-replica02:27017")
-sh.addShard("rs-shard-02/shard02-replica03:27017")
-sh.addShard("rs-shard-03/shard03-replica01:27017")
-sh.addShard("rs-shard-03/shard03-replica02:27017")
-sh.addShard("rs-shard-03/shard03-replica03:27017")
-
-sh.enableSharding("MyDatabase")
-
-db.adminCommand( { shardCollection: "mydb.<collectionName>", key: { _id: "hashed" } } )
+db.reviews.insertMany([
+    {product_id: 'p1', user_id: '1', date: '13.06.2023', rating: 5.0, text: 'Все хорошо'},
+    {product_id: 'p1', user_id: '5', date: '12.09.2023', rating: 4.0, text: 'Не все идеально, но пойдет'},
+    {product_id: 'p2', user_id: '3', date: '10.08.2023', rating: 4.9, text: 'Отлично'},
+    {product_id: 'p3', user_id: '6', date: '30.11.2023', rating: 2.0, text: 'Разочарован'},
+    {product_id: 'p5', user_id: '3', date: '10.08.2023', rating: 5.0, text: 'Отличные материалы'},
+]);

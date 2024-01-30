@@ -4,6 +4,7 @@ const selectCollection = document.querySelector('.select-collection');
 const btnCreateNew = document.querySelector('.btn--create-new');
 const documentContainer = document.querySelector('.documents-container');
 const menu = document.querySelector('.menu');
+const btnTransaction = document.querySelector('.btn--transaction');
 
 let value = '';
 
@@ -11,25 +12,13 @@ selectCollection.addEventListener('change', async function () {
     value = selectCollection.value;
     selectCollection[0].disabled = true;
     btnCreateNew.disabled = false;
+    btnTransaction.disabled = false;
     const data = await loadDocuments(value);
     console.log(data)
 
     data.data[value].forEach(item => {
         renderDocument(item);
     });
-
-    const documents = document.querySelectorAll('.document');
-    documents.forEach(doc => doc.addEventListener('click', function (e) {
-        if (e.target.classList.contains('document__save')) {
-            const json = JSON.parse(e.target.closest('.document').querySelector('.document__json').innerText);
-            updateDocument(value, json);
-        }
-        if (e.target.classList.contains('document__delete')) {
-            const json = JSON.parse(e.target.closest('.document').querySelector('.document__json').innerText);
-            deleteDocument(value, json._id);
-            e.target.closest('.document').remove();
-        }
-    }));
 })
 
 const renderDocument = function (doc) {
@@ -43,6 +32,19 @@ const renderDocument = function (doc) {
     `;
 
     documentContainer.insertAdjacentHTML('afterbegin', markup);
+
+    const documents = document.querySelectorAll('.document');
+    documents.forEach(doc => doc.addEventListener('click', function (e) {
+        if (e.target.classList.contains('document__save')) {
+            const json = JSON.parse(e.target.closest('.document').querySelector('.document__json').innerText);
+            updateDocument(value, json);
+        }
+        if (e.target.classList.contains('document__delete')) {
+            const json = JSON.parse(e.target.closest('.document').querySelector('.document__json').innerText);
+            deleteDocument(value, json._id);
+            e.target.closest('.document').remove();
+        }
+    }));
 }
 
 const createFormForNewDocument = function () {
@@ -76,6 +78,12 @@ const createFormForNewDocument = function () {
 btnCreateNew.addEventListener('click', function () {
     createFormForNewDocument();
 });
+
+btnTransaction.addEventListener('click', async function (e) {
+    await fetch(`http://127.0.0.1:8181/api/v1/transaction`, {
+        method: 'POST',
+    })
+})
 
 const loadDocuments = async function (collection) {
     try {

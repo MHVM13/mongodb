@@ -92,7 +92,3 @@ exports.deleteUser = async (req, res) => {
         });
     }
 };
-
-exports.transaction = async (req, res) => {
-
-};

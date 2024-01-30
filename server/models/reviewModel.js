@@ -1,9 +1,8 @@
-import mongoose from "mongoose";
-import {Schema} from "mongoose";
+const mongoose = require('mongoose');
 
-const reviewsSchema = new Schema({
-    product_name: String, // ???
-    user_id: String, // ??
+const reviewsSchema = new mongoose.Schema({
+    product_id: String,
+    user_id: String,
     date: Date,
     rating: Number,
     text: String,
